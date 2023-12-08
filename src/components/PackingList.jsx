@@ -1,19 +1,12 @@
-import {
-  Checkbox,
-  Button,
-  CheckboxGroup,
-  Stack,
-  HStack,
-} from "@chakra-ui/react";
-
+import { Checkbox, SimpleGrid, CheckboxGroup, HStack } from "@chakra-ui/react";
 import { SmallCloseIcon } from "@chakra-ui/icons";
 
 const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
   console.log(items);
   return (
     <>
-      <CheckboxGroup colorScheme="green">
-        <Stack spacing={[1, 5]} direction={["column", "row"]}>
+      <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} spacing={3}>
+        <CheckboxGroup colorScheme="green">
           {items.map((item) => (
             <HStack key={item.id}>
               <Checkbox
@@ -28,8 +21,8 @@ const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
               </button>
             </HStack>
           ))}
-        </Stack>
-      </CheckboxGroup>
+        </CheckboxGroup>
+      </SimpleGrid>
     </>
   );
 };

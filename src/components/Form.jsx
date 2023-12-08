@@ -8,18 +8,16 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 
-const Form = () => {
+const Form = ({ onAddItems }) => {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!description) return;
-
     const newItem = { description, quantity, packed: false, id: Date.now() };
     console.log(newItem);
-
+    onAddItems(newItem);
     setDescription("");
     setQuantity(1);
   };
@@ -43,7 +41,7 @@ const Form = () => {
             <Input
               borderRadius={8}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="T-shirts"
+              placeholder="items..."
               variant="outline"
               value={description}
             />

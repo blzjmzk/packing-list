@@ -1,44 +1,57 @@
 import {
   Button,
-  Heading,
   Select,
   Input,
   InputGroup,
   InputRightElement,
   HStack,
 } from "@chakra-ui/react";
+import { useState } from "react";
 
 const Form = () => {
-  //   const ref = useRef < HTMLInputElement > null;
-  //   const setSearchText = useGameQueryStore((s) => s.setSearchText);
+  const [description, setDescription] = useState("");
+  const [quantity, setQuantity] = useState(1);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!description) return;
+
+    const newItem = { description, quantity, packed: false, id: Date.now() };
+    console.log(newItem);
+
+    setDescription("");
+    setQuantity(1);
+  };
+
   return (
     <>
-      <Heading marginBottom={5}>Packing List</Heading>
       <HStack justifyContent="center">
-        <Select width="auto">
-          <option value="option1">1</option>
-          <option value="option2">2</option>
-          <option value="option3">3</option>
+        <Select
+          value={quantity}
+          onChange={(e) => setQuantity(Number(e.target.value))}
+          width="auto"
+        >
+          {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
+            <option value={num} key={num}>
+              {num}
+            </option>
+          ))}
         </Select>
-        {/* <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          if (ref.current) setSearchText(ref.current.value);
-          navigate("/");
-        }}
-      > */}
-        <InputGroup width="auto">
-          <Input
-            //   ref={ref}
-            borderRadius={8}
-            placeholder="Enter items..."
-            variant="outline"
-          />
-          <InputRightElement width="auto">
-            <Button>Add</Button>
-          </InputRightElement>
-        </InputGroup>
-        {/* </form> */}
+        <form onSubmit={handleSubmit}>
+          <InputGroup width="auto">
+            <Input
+              borderRadius={8}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="T-shirts"
+              variant="outline"
+              value={description}
+            />
+            <InputRightElement width="auto">
+              <Button type="submit">Add</Button>
+            </InputRightElement>
+          </InputGroup>
+        </form>
       </HStack>
     </>
   );

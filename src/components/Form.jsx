@@ -2,6 +2,7 @@ import {
   Button,
   Select,
   Input,
+  Box,
   InputGroup,
   InputRightElement,
   HStack,
@@ -15,16 +16,18 @@ const Form = ({ onAddItems }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!description) return;
+
     const newItem = { description, quantity, packed: false, id: Date.now() };
-    console.log(newItem);
     onAddItems(newItem);
+    console.log(newItem);
+
     setDescription("");
     setQuantity(1);
   };
 
   return (
     <>
-      <HStack justifyContent="center">
+      <HStack mb="3">
         <Select
           value={quantity}
           onChange={(e) => setQuantity(Number(e.target.value))}
@@ -36,20 +39,24 @@ const Form = ({ onAddItems }) => {
             </option>
           ))}
         </Select>
-        <form onSubmit={handleSubmit}>
-          <InputGroup width="auto">
-            <Input
-              borderRadius={8}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="items..."
-              variant="outline"
-              value={description}
-            />
-            <InputRightElement width="auto">
-              <Button type="submit">Add</Button>
-            </InputRightElement>
-          </InputGroup>
-        </form>
+        <Box w="100%">
+          <form onSubmit={handleSubmit}>
+            <InputGroup>
+              <Input
+                borderRadius={8}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="items..."
+                variant="outline"
+                value={description}
+              />
+              <InputRightElement>
+                <Button type="submit" size="sm" mx="1">
+                  Add
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+          </form>
+        </Box>
       </HStack>
     </>
   );

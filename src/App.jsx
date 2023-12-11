@@ -1,4 +1,3 @@
-import "./App.css";
 import { VStack, Heading, Text, Box } from "@chakra-ui/react";
 import { useState } from "react";
 import Form from "./components/Form";
@@ -27,24 +26,22 @@ function App() {
 
   return (
     <>
-      <Box pos="absolute" top="4" right="4">
+      <Box pos="fixed" top="4" right="4">
         <ColorModeSwitch />
       </Box>
-      <VStack justifyContent="center">
+      <VStack mt="60px">
         <Heading marginY={8}>Packing List</Heading>
         <Box borderWidth="1px" borderRadius="lg" p="6">
-          <VStack justifyContent="center">
-            <Text marginBottom={1} fontSize="xl">
-              I need to take:
-            </Text>
-            <Form onAddItems={handleAddItems} />
-            <PackingList
-              items={items}
-              onDeleteItem={handleDeleteItems}
-              onToggleItem={handleToggleItem}
-            />
-            <Stats />
-          </VStack>
+          <Text marginBottom={1} fontSize="xl" textAlign="center">
+            I need to take:
+          </Text>
+          <Form onAddItems={handleAddItems} />
+          <PackingList
+            items={items}
+            onDeleteItem={handleDeleteItems}
+            onToggleItem={handleToggleItem}
+          />
+          <Stats />
         </Box>
       </VStack>
     </>

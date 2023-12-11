@@ -6,22 +6,20 @@ const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
   return (
     <>
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} spacing={3}>
-        <CheckboxGroup colorScheme="green">
-          {items.map((item) => (
-            <HStack key={item.id}>
-              <Checkbox
-                value={item.packed}
-                onChange={() => onToggleItem(item.id)}
-                textDecoration={item.packed ? "line-through" : null}
-              >
-                {item.quantity} {item.description}
-              </Checkbox>
-              <button onClick={() => onDeleteItem(item.id)}>
-                <SmallCloseIcon />
-              </button>
-            </HStack>
-          ))}
-        </CheckboxGroup>
+        {items.map((item) => (
+          <CheckboxGroup key={item.id} colorScheme="green">
+            <Checkbox
+              value={item.packed}
+              onChange={() => onToggleItem(item.id)}
+              textDecoration={item.packed ? "line-through" : null}
+            >
+              {item.quantity} {item.description}
+            </Checkbox>
+            <button onClick={() => onDeleteItem(item.id)}>
+              <SmallCloseIcon />
+            </button>
+          </CheckboxGroup>
+        ))}
       </SimpleGrid>
     </>
   );

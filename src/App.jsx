@@ -4,6 +4,7 @@ import { useState } from "react";
 import Form from "./components/Form";
 import PackingList from "./components/PackingList";
 import Stats from "./components/Stats";
+import ColorModeSwitch from "./components/ColorModeSwitch";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -27,6 +28,7 @@ function App() {
   return (
     <>
       <VStack justifyContent="center">
+        <ColorModeSwitch />
         <Heading marginY={8}>Packing List</Heading>
         <Box borderWidth="1px" borderRadius="lg" p="6">
           <VStack justifyContent="center">

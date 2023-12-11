@@ -50,7 +50,7 @@ const Form = ({ onAddItems }) => {
                 value={description}
               />
               <InputRightElement>
-                <Button type="submit" size="sm" mx="1">
+                <Button type="submit" size="sm" mx={1}>
                   Add
                 </Button>
               </InputRightElement>

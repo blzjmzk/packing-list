@@ -23,7 +23,7 @@ const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
               </Checkbox>
             </CheckboxGroup>
             <button onClick={() => onDeleteItem(item.id)}>
-              <SmallCloseIcon />
+              <SmallCloseIcon _hover={{ color: "red" }} />
             </button>
           </Box>
         ))}

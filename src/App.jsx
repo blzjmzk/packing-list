@@ -29,10 +29,12 @@ function App() {
       <Box pos="fixed" top="4" right="4">
         <ColorModeSwitch />
       </Box>
-      <VStack mt="60px">
-        <Heading marginY={8}>Packing List</Heading>
+      <VStack>
+        <Heading marginTop={14} marginBottom={4}>
+          Packing List
+        </Heading>
         <Box borderWidth="1px" borderRadius="lg" p="6">
-          <Text marginBottom={1} fontSize="xl" textAlign="center">
+          <Text marginBottom={2} fontSize="xl" textAlign="center">
             I need to take:
           </Text>
           <Form onAddItems={handleAddItems} />
@@ -41,7 +43,7 @@ function App() {
             onDeleteItem={handleDeleteItems}
             onToggleItem={handleToggleItem}
           />
-          <Stats />
+          <Stats items={items} />
         </Box>
       </VStack>
     </>

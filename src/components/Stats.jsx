@@ -1,10 +1,25 @@
-import { Text } from "@chakra-ui/react";
+import { Text, Box } from "@chakra-ui/react";
 
-const Stats = () => {
+const Stats = ({ items }) => {
+  if (!items.length) return;
+
+  const numItems = items.length;
+  const numPacked = items.filter((item) => item.packed).length;
+  const percentage = Math.round((numPacked / numItems) * 100);
+
   return (
     <>
-      <Text>You have x items on your packing list</Text>
-      <Text>You already packed items</Text>
+      <Box marginTop={4}>
+        {percentage === 100 ? (
+          <Text>Everything packed! </Text>
+        ) : (
+          <Text as="div">
+            You have {numItems} items on your packing list
+            <br />
+            You already packed {numPacked} items ({percentage}%)
+          </Text>
+        )}
+      </Box>
     </>
   );
 };

@@ -27,8 +27,10 @@ function App() {
 
   return (
     <>
-      <VStack justifyContent="center">
+      <Box pos="absolute" top="4" right="4">
         <ColorModeSwitch />
+      </Box>
+      <VStack justifyContent="center">
         <Heading marginY={8}>Packing List</Heading>
         <Box borderWidth="1px" borderRadius="lg" p="6">
           <VStack justifyContent="center">

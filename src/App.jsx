@@ -1,12 +1,14 @@
-import { VStack, Heading, Text, Box } from "@chakra-ui/react";
+import { VStack, Heading, Text, Flex, Box } from "@chakra-ui/react";
 import { useState } from "react";
 import Form from "./components/Form";
 import PackingList from "./components/PackingList";
 import Stats from "./components/Stats";
 import ColorModeSwitch from "./components/ColorModeSwitch";
+import Sort from "./components/Sort";
 
 function App() {
   const [items, setItems] = useState([]);
+  const [sortBy, setSortBy] = useState("input");
 
   function handleAddItems(item) {
     setItems((items) => [...items, item]);
@@ -24,6 +26,17 @@ function App() {
     );
   }
 
+  let sortedItems;
+  if (sortBy === "input") sortedItems = items;
+  if (sortBy === "description")
+    sortedItems = items
+      .slice()
+      .sort((a, b) => a.description.localeCompare(b.description));
+  if (sortBy === "packed")
+    sortedItems = items
+      .slice()
+      .sort((a, b) => Number(a.packed) - Number(b.packed));
+
   return (
     <>
       <Box pos="fixed" top="4" right="4">
@@ -33,13 +46,16 @@ function App() {
         <Heading marginTop={14} marginBottom={4}>
           Packing List
         </Heading>
-        <Box borderWidth="1px" borderRadius="lg" p="6">
+        <Box borderWidth="1px" borderRadius="lg" px={5} pb={6} pt={1}>
+          <Flex justify="flex-end">
+            <Sort sortBy={sortBy} setSortBy={setSortBy} />
+          </Flex>
           <Text marginBottom={2} fontSize="xl" textAlign="center">
             I need to take:
           </Text>
           <Form onAddItems={handleAddItems} />
           <PackingList
-            items={items}
+            items={sortedItems}
             onDeleteItem={handleDeleteItems}
             onToggleItem={handleToggleItem}
           />

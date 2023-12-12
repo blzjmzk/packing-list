@@ -12,7 +12,9 @@ const Sort = ({ sortBy, setSortBy }) => {
   return (
     <Menu>
       <MenuButton as={Button} size="xs" rightIcon={<ChevronDownIcon />}>
-        Sort
+        {sortBy === "input" && "Sort by input order"}
+        {sortBy === "description" && "Sort by description"}
+        {sortBy === "packed" && "Sort by packed status"}
       </MenuButton>
       <MenuList>
         <MenuOptionGroup value={sortBy} onChange={(value) => setSortBy(value)}>

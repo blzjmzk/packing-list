@@ -9,7 +9,7 @@ const Stats = ({ items }) => {
 
   return (
     <>
-      <Box marginTop={4}>
+      <Box marginY={4}>
         {percentage === 100 ? (
           <Text>Everything packed! </Text>
         ) : (

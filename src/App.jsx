@@ -1,4 +1,4 @@
-import { VStack, Heading, Text, Flex, Box } from "@chakra-ui/react";
+import { VStack, Heading, Text, Flex, Button, Box } from "@chakra-ui/react";
 import { useState } from "react";
 import Form from "./components/Form";
 import PackingList from "./components/PackingList";
@@ -26,6 +26,10 @@ function App() {
     );
   }
 
+  function clearList() {
+    setItems([]);
+  }
+
   let sortedItems;
   if (sortBy === "input") sortedItems = items;
   if (sortBy === "description")
@@ -46,7 +50,16 @@ function App() {
         <Heading marginTop={14} marginBottom={4}>
           Packing List
         </Heading>
-        <Box borderWidth="1px" borderRadius="lg" px={5} pb={6} pt={1}>
+        <Box
+          borderWidth="1px"
+          borderRadius="lg"
+          height={{ base: "100vh", sm: "40vh" }}
+          width="100%"
+          maxWidth={{ base: "100%", sm: "60%" }}
+          px={5}
+          pb={6}
+          pt={1}
+        >
           <Flex justify="flex-end">
             <Sort sortBy={sortBy} setSortBy={setSortBy} />
           </Flex>
@@ -60,6 +73,13 @@ function App() {
             onToggleItem={handleToggleItem}
           />
           <Stats items={items} />
+          {items.length > 0 && (
+            <Flex justify="center">
+              <Button onClick={clearList} size="sm">
+                Clear the list
+              </Button>
+            </Flex>
+          )}
         </Box>
       </VStack>
     </>

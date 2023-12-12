@@ -43,7 +43,7 @@ function App() {
 
   return (
     <>
-      <Box pos="fixed" top="4" right="4">
+      <Box pos="absolute" top="4" right="4">
         <ColorModeSwitch />
       </Box>
       <VStack>
@@ -51,35 +51,46 @@ function App() {
           Packing List
         </Heading>
         <Box
-          borderWidth="1px"
           borderRadius="lg"
-          height={{ base: "100vh", sm: "40vh" }}
-          width="100%"
-          maxWidth={{ base: "100%", sm: "60%" }}
-          px={5}
+          borderWidth="1px"
+          maxWidth={{ base: "90%", sm: "50%" }}
+          minHeight={{ base: "90vh", sm: "70vh" }}
           pb={6}
+          position="relative"
           pt={1}
+          px={5}
+          width="100%"
         >
-          <Flex justify="flex-end">
+          <Flex direction="column">
+            <Text marginBottom={2} fontSize="xl" textAlign="center">
+              I need to take:
+            </Text>
+            <Form onAddItems={handleAddItems} />
             <Sort sortBy={sortBy} setSortBy={setSortBy} />
-          </Flex>
-          <Text marginBottom={2} fontSize="xl" textAlign="center">
-            I need to take:
-          </Text>
-          <Form onAddItems={handleAddItems} />
-          <PackingList
-            items={sortedItems}
-            onDeleteItem={handleDeleteItems}
-            onToggleItem={handleToggleItem}
-          />
-          <Stats items={items} />
-          {items.length > 0 && (
-            <Flex justify="center">
-              <Button onClick={clearList} size="sm">
-                Clear the list
-              </Button>
+            <PackingList
+              items={sortedItems}
+              onDeleteItem={handleDeleteItems}
+              onToggleItem={handleToggleItem}
+            />
+            <Flex
+              bottom="0"
+              justify="center"
+              mb={4}
+              position="absolute"
+              width="100%"
+            >
+              <Box position="absolute" bottom="0" mb={2}>
+                <Stats items={items} />
+                {items.length > 0 && (
+                  <Flex justify="center">
+                    <Button onClick={clearList} size="sm">
+                      Clear the list
+                    </Button>
+                  </Flex>
+                )}
+              </Box>
             </Flex>
-          )}
+          </Flex>
         </Box>
       </VStack>
     </>

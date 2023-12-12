@@ -31,7 +31,7 @@ const Form = ({ onAddItems }) => {
         <Select
           value={quantity}
           onChange={(e) => setQuantity(Number(e.target.value))}
-          width="auto"
+          width="90px"
         >
           {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
             <option value={num} key={num}>
@@ -43,6 +43,7 @@ const Form = ({ onAddItems }) => {
           <form onSubmit={handleSubmit}>
             <InputGroup>
               <Input
+                autoFocus
                 borderRadius={8}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="items..."

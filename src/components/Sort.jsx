@@ -11,7 +11,14 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 const Sort = ({ sortBy, setSortBy }) => {
   return (
     <Menu>
-      <MenuButton as={Button} size="xs" rightIcon={<ChevronDownIcon />}>
+      <MenuButton
+        as={Button}
+        size="sm"
+        mb={2}
+        px={4}
+        mx="auto"
+        rightIcon={<ChevronDownIcon />}
+      >
         {sortBy === "input" && "Sort by input order"}
         {sortBy === "description" && "Sort by description"}
         {sortBy === "packed" && "Sort by packed status"}

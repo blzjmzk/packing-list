@@ -1,4 +1,4 @@
-import { Checkbox, SimpleGrid, CheckboxGroup, Box } from "@chakra-ui/react";
+import { Checkbox, SimpleGrid, CheckboxGroup, HStack } from "@chakra-ui/react";
 import { SmallCloseIcon } from "@chakra-ui/icons";
 
 const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
@@ -7,7 +7,7 @@ const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
     <>
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} spacing={3} mb={28}>
         {items.map((item) => (
-          <Box key={item.id}>
+          <HStack key={item.id} justify="flex-start" gap="0">
             <CheckboxGroup colorScheme="green">
               <Checkbox
                 onChange={() => onToggleItem(item.id)}
@@ -19,7 +19,7 @@ const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
             <button onClick={() => onDeleteItem(item.id)}>
               <SmallCloseIcon _hover={{ color: "red" }} />
             </button>
-          </Box>
+          </HStack>
         ))}
       </SimpleGrid>
     </>

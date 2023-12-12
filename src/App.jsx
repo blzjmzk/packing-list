@@ -54,7 +54,7 @@ function App() {
           borderRadius="lg"
           borderWidth="1px"
           maxWidth={{ base: "90%", sm: "40%" }}
-          minHeight={{ base: "90vh", sm: "70vh" }}
+          minHeight={{ base: "80vh", sm: "70vh" }}
           pb={6}
           position="relative"
           pt={1}
